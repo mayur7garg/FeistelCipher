@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: feistelcipher
+Version: 0.1.0
+Summary: Naive implementation of Feistel Cipher using Python
+Home-page: https://github.com/mayur7garg/FeistelCipher
+Author: Mayur Kr. Garg
+Author-email: mayur7garg@gmail.com
+License: MIT
+Description: # FeistelCipher
+        Naive implementation of Feistel Cipher using Python
+        
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown

@@ -1,6 +1,6 @@
-import FeistelCipher as fc
-import StandardCryptFunctions as scf
-import CryptFunctions as cfs
+import feistelcipher.FeistelCipher as fc
+import feistelcipher.StandardCryptFunctions as scf
+import feistelcipher.CryptFunctions as cfs
 import random as rnd
 
 if __name__ == '__main__':

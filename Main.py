@@ -1,6 +1,6 @@
-import FeistelCipher as fc
-import StandardCryptFunctions as scf
-import CryptFunctions as cfs
+import feistelcipher.FeistelCipher as fc
+import feistelcipher.StandardCryptFunctions as scf
+import feistelcipher.CryptFunctions as cfs
 
 if __name__ == '__main__':
     numToEncrypt = 1_234_567
