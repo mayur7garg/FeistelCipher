@@ -9,7 +9,10 @@ class FeistelCipher():
             self.blockLength = blockLength
 
         def __str__(self) -> str:
-            return str(self.left) + str(self.right)
+            return str((self.left, self.right, self.blockLength))
+
+        def __repr__(self) -> str:
+            return self.__class__.__name__ + str((self.left, self.right, self.blockLength))
 
     def __init__(self, cryptFuncs: CryptFunctions):
         self.cryptFuncs = cryptFuncs
