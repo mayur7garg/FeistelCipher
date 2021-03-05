@@ -1,24 +1,26 @@
 import feistelcipher.FeistelCipher as fc
 import feistelcipher.StandardCryptFunctions as scf
 import feistelcipher.CryptFunctions as cfs
+import random as rnd
 
 if __name__ == '__main__':
-    numToEncrypt = 1_234_567
+    numToEncrypt = rnd.randint(-9_999, 9_999)
 
     funcList = cfs.CryptFunctions()
 
-    funcList.addFunc(scf.identity, 0)
-    funcList.addFunc(scf.add, 1)
-    funcList.addFunc(scf.multiply, 2)
-    funcList.addFunc(scf.addThenMultiply, 3)
-    funcList.addFunc(scf.strLength, 4)
-    funcList.addFunc(scf.power, 5)
-    funcList.addFunc(scf.reverse, 6)
-    funcList.addFunc(scf.truncate, 7)
-    funcList.addFunc(scf.remainder, 8)
-    funcList.addFunc(scf.quotient, 9)
+    funcList.addFunc(scf.identity)
+    funcList.addFunc(scf.add, [rnd.randint(-10, 10)])
+    funcList.addFunc(scf.multiply, [rnd.randint(-10, 10)])
+    funcList.addFunc(scf.strLength)
+    funcList.addFunc(scf.power, [rnd.randint(-10, 10)])
+    funcList.addFunc(scf.reverse)
+    funcList.addFunc(scf.truncate, [rnd.randint(-10, 10)])
+    funcList.addFunc(scf.remainder, [rnd.randint(-10, 10)])
+    funcList.addFunc(scf.quotient, [rnd.randint(-10, 10)])
+    funcList.addFunc(scf.scaledDistance, [rnd.randint(-10, 10) for i in range(4)])
 
     cipher = fc.FeistelCipher(funcList)
+    cipher.printCipherBlock()
 
     enc = cipher.encrypt(numToEncrypt)
     print(f"Encrypted {numToEncrypt} as {enc}.")
