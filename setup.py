@@ -7,8 +7,8 @@ README = (HERE / "README.md").read_text()
 
 setup(
     name = "feistelcipher",
-    version = "0.1.0",
-    description = "Naive implementation of Feistel Cipher using Python",
+    version = "0.2.0",
+    description = "Naive implementation of Feistel Cipher for encrypting/decrypting integers using custom function blocks.",
     long_description = README,
     long_description_content_type = "text/markdown",
     url = "https://github.com/mayur7garg/FeistelCipher",

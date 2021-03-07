@@ -21,14 +21,24 @@ class FeistelCipher():
         temp = left ^ cryptFunc.execute(right)
         return (right, temp)
 
-    def encrypt(self, numToEncrypt: int) -> 'EncryptedObject':
-        numToEncrypt = str(numToEncrypt)
-        if len(numToEncrypt) % 2 == 1:
-            numToEncrypt = '0' + numToEncrypt
+    def printCipherBlock(self):
+        print(self.cryptFuncs)
 
-        blockLength = len(numToEncrypt)//2
-        leftHalf = int(numToEncrypt[blockLength:])
-        rightHalf = int(numToEncrypt[:blockLength])
+    def encrypt(self, numToEncrypt: int) -> 'EncryptedObject':
+        signOffset = 1 if numToEncrypt < 0 else 0
+        numToEncrypt = str(numToEncrypt)
+
+        if len(numToEncrypt) % 2 == 1:
+            numToEncrypt = numToEncrypt[:signOffset] + '0' + numToEncrypt[signOffset:]
+
+        blockLength = len(numToEncrypt) // 2
+
+        if (blockLength == 1 and signOffset == 1) or (int(numToEncrypt[:blockLength]) == 0):
+            leftHalf = int(numToEncrypt)
+            rightHalf = 0
+        else:
+            leftHalf = int(numToEncrypt[blockLength:])
+            rightHalf = int(numToEncrypt[:blockLength])
 
         for cryptFunc in self.cryptFuncs:
             (leftHalf, rightHalf) = self.execCipherBlock(leftHalf, rightHalf, cryptFunc)
@@ -41,10 +51,9 @@ class FeistelCipher():
         blockLength = encryptedObject.blockLength
 
         for cryptFunc in self.cryptFuncs[::-1]:
-            (leftHalf, rightHalf) = self.execCipherBlock(
-                leftHalf, rightHalf, cryptFunc)
+            (leftHalf, rightHalf) = self.execCipherBlock(leftHalf, rightHalf, cryptFunc)
 
-        leftHalf = str(leftHalf).rjust(blockLength, '0')
+        leftHalf = str(leftHalf)
         rightHalf = str(rightHalf).rjust(blockLength, '0')
 
-        return int(leftHalf+rightHalf)
+        return int(rightHalf) if int(leftHalf) == 0 else int(leftHalf + rightHalf)
